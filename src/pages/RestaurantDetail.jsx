@@ -1,0 +1,86 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import AuthModal from "../components/AuthModal";
+import api from "../lib/api";
+import toast from "react-hot-toast";
+import Loader from "../components/Loader";
+import RestaurantHero from "../components/restaurant/RestaurantHero";
+import RestaurantInfo from "../components/restaurant/RestaurantInfo";
+import RestaurantReviews from "../components/restaurant/RestaurantReviews";
+import BookingWidget from "../components/restaurant/BookingWidget";
+export default function RestaurantDetail() {
+    const { slug } = useParams();
+    const { isAuthenticated, setAuthModalOpen } = useAppContext();
+    const navigate = useNavigate();
+    const [restaurant, setRestaurant] = useState(null);
+    const [loading, setLoading] = useState(true);
+    // Booking Widget states
+    const [selectedDate, setSelectedDate] = useState("");
+    const [selectedGuests, setSelectedGuests] = useState("2");
+    const [selectedSlot, setSelectedSlot] = useState("");
+    const [slotsAvailability, setSlotsAvailability] = useState([]);
+    const [loadingSlots, setLoadingSlots] = useState(false);
+    useEffect(() => {
+        const fetchRestaurant = async () => {
+            try {
+                setLoading(true);
+                const res = await api.get(`/restaurants/${slug}`);
+                setRestaurant(res.data);
+                // Initialize booking values
+                const today = new Date().toISOString().split("T")[0];
+                setSelectedDate(today);
+            }
+            catch (error) {
+                toast.error(error?.response?.data?.message || error?.message);
+                navigate("/");
+            }
+            finally {
+                setLoading(false);
+            }
+        };
+        if (slug) {
+            fetchRestaurant();
+        }
+    }, [slug, navigate]);
+    useEffect(() => {
+        const fetchAvailability = async () => {
+            if (!restaurant?._id || !selectedDate)
+                return;
+            try {
+                setLoadingSlots(true);
+                const res = await api.get(`/restaurants/${restaurant._id}/availability?date=${selectedDate}`);
+                setSlotsAvailability(res.data);
+            }
+            catch (error) {
+                console.error(error);
+            }
+            finally {
+                setLoadingSlots(false);
+            }
+        };
+        fetchAvailability();
+    }, [restaurant?._id, selectedDate]);
+    if (loading) {
+        return _jsx(Loader, { text: "Loading Restaurant Details..." });
+    }
+    if (!restaurant)
+        return null;
+    const handleReserveClick = () => {
+        if (!selectedSlot) {
+            toast.error("Please select a dining time slot.");
+            return;
+        }
+        if (!isAuthenticated) {
+            setAuthModalOpen(true);
+            return;
+        }
+        // Redirect to confirmation page with query params
+        navigate(`/booking/${restaurant.slug}?slot=${selectedSlot}&date=${selectedDate}&guests=${selectedGuests}`);
+    };
+    return (_jsxs("div", { className: "min-h-screen bg-surface flex flex-col pt-20", children: [_jsx(Navbar, {}), _jsx(AuthModal, {}), _jsx(RestaurantHero, { restaurant: restaurant }), _jsx("main", { className: "grow max-w-7xl w-full mx-auto px-6 md:px-10 py-12", children: _jsxs("div", { className: "grid grid-cols-1 lg:grid-cols-12 gap-12 items-start", children: [_jsxs("div", { className: "lg:col-span-8 space-y-12", children: [_jsx(RestaurantInfo, { restaurant: restaurant }), _jsx(RestaurantReviews, {})] }), _jsx("div", { className: "lg:col-span-4 lg:sticky lg:top-36", children: _jsx(BookingWidget, { restaurant: restaurant, selectedDate: selectedDate, setSelectedDate: setSelectedDate, selectedGuests: selectedGuests, setSelectedGuests: setSelectedGuests, selectedSlot: selectedSlot, setSelectedSlot: setSelectedSlot, slotsAvailability: slotsAvailability, loadingSlots: loadingSlots, isAuthenticated: isAuthenticated, handleReserveClick: handleReserveClick }) })] }) }), _jsx(Footer, {})] }));
+}

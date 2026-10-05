@@ -1,0 +1,7 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Star } from "lucide-react";
+import { dummyReviews } from "../../assets/assets";
+export default function RestaurantReviews() {
+    return (_jsxs("section", { className: "space-y-8 pt-6 border-t border-outline-variant/10 text-left", children: [_jsx("h3", { className: "font-display text-xl font-semibold text-primary", children: "Guest Experiences" }), _jsx("div", { className: "space-y-6", children: dummyReviews.length === 0 ? (_jsx("p", { className: "text-xs text-black/55/80 italic", children: "No reviews yet. Be the first to share your experience!" })) : (dummyReviews.map((r) => (_jsxs("div", { className: "pb-6 border-b border-outline-variant/10 last:border-b-0 space-y-2", children: [_jsxs("div", { className: "flex items-center justify-between", children: [_jsxs("div", { children: [_jsx("h4", { className: "text-sm font-medium text-primary", children: r.userName }), _jsxs("span", { className: "text-xs text-black/55", children: ["Visited ", new Date(r.visitedDate).toLocaleDateString()] })] }), _jsx("div", { className: "flex items-center gap-0.5 text-secondary", children: [...Array(5)].map((_, i) => (_jsx(Star, { size: 12, fill: i < r.rating ? "currentColor" : "none", className: i < r.rating ? "" : "text-outline-variant" }, i))) })] }), _jsx("p", { className: "text-xs text-black/55 max-w-lg leading-relaxed", children: r.comment })] }, r._id)))) })] }));
+}
