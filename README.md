@@ -8,7 +8,7 @@ QuickDine is a full-stack, multi-restaurant management and table reservation pla
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge\&logo=vercel)](YOUR_VERCEL_LIVE_URL)
 
-> Replace `YOUR_VERCEL_LIVE_URL` with your actual deployed Vercel URL.
+> 
 
 ## ✨ Key Features
 
