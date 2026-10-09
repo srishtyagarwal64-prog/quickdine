@@ -1,73 +1,180 @@
-# React + TypeScript + Vite
+# 🍽️ QuickDine — Multi-Restaurant Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+QuickDine is a full-stack, multi-restaurant management and table reservation platform designed to connect customers with restaurants through a centralized booking system. It provides dedicated interfaces for customers, restaurant owners, and administrators to manage reservations, restaurant information, and table availability.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live Website:** [QuickDine — Visit Website](YOUR_VERCEL_LIVE_URL)
 
-## React Compiler
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge\&logo=vercel)](YOUR_VERCEL_LIVE_URL)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Replace `YOUR_VERCEL_LIVE_URL` with your actual deployed Vercel URL.
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+* **Multi-Restaurant Platform:** Browse and access multiple restaurants through a centralized platform.
+* **Customer Booking System:** Explore restaurants and make table reservations.
+* **Restaurant Owner Dashboard:** Manage restaurant details, tables, and reservation information.
+* **Admin Dashboard:** Centralized management of platform data and restaurant registrations.
+* **Authentication & Authorization:** Secure access to application features based on user roles.
+* **Restaurant Registration:** Enable restaurant owners to register their restaurants on the platform.
+* **Table Management:** Organize restaurant tables and manage their availability.
+* **Reservation Management:** Handle customer bookings and reservation status.
+* **Responsive UI:** User-friendly interface for desktop and mobile devices.
+* **REST API Development:** Backend APIs for communication between the frontend and database.
+* **MongoDB Database Design:** Store and manage restaurant, user, table, and reservation data.
+* **Full-Stack Deployment:** Frontend deployment on Vercel and backend deployment on a compatible hosting platform.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**Frontend**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+* React.js
+* JavaScript
+* HTML5
+* CSS3
+
+**Backend**
+
+* Node.js
+* Express.js
+* REST APIs
+* JWT-based authentication (if implemented)
+* Role-Based Access Control (RBAC)
+
+**Database**
+
+* MongoDB
+* Mongoose
+
+**Deployment**
+
+* Vercel — Frontend
+* Backend hosting platform — Add the actual provider used
+
+## 👥 User Roles
+
+| Role             | Responsibilities                                        |
+| ---------------- | ------------------------------------------------------- |
+| Customer         | Browse restaurants and manage table reservations        |
+| Restaurant Owner | Manage restaurant information, tables, and bookings     |
+| Admin            | Manage restaurant registrations and platform operations |
+
+## 🏗️ Application Workflow
+
+1. Users register or log in to the platform.
+2. Customers explore available restaurants.
+3. Customers select a restaurant and submit a table reservation.
+4. Restaurant owners manage restaurant details, table availability, and reservations.
+5. Administrators oversee restaurant registrations and platform operations.
+
+## 📂 Project Structure
+
+```text
+QuickDine/
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+├── backend/
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   ├── middleware/
+│   └── package.json
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+*Update the directory structure to match your actual repository.*
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ⚙️ Installation and Setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+* Node.js and npm
+* MongoDB database
+* Git
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+cd QuickDine
 ```
+
+### 2. Set up the backend
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file with the environment variables required by your backend.
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+Use the exact variable names expected by your code. Never commit real credentials to GitHub.
+
+Start the backend using the script configured in `package.json`, for example:
+
+```bash
+npm run dev
+```
+
+### 3. Set up the frontend
+
+Open a separate terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Configure the frontend API base URL to point to your backend.
+
+## ☁️ Deployment
+
+### Frontend — Vercel
+
+1. Import the frontend repository into Vercel.
+2. Configure the correct project root directory.
+3. Add the required environment variables.
+4. Deploy the application.
+5. Copy the generated production URL into the Live Demo section.
+
+### Backend — API Hosting
+
+1. Deploy the Node.js and Express backend to your chosen hosting provider.
+2. Configure the MongoDB connection string and other environment variables.
+3. Update CORS settings to allow requests from your deployed frontend.
+4. Set the frontend API base URL to the deployed backend URL.
+5. Test the main application flows after deployment.
+
+## 🔒 Security Considerations
+
+* Validate incoming API requests.
+* Protect private routes with authentication middleware.
+* Enforce role-based permissions on the backend.
+* Keep secrets and database credentials in environment variables.
+* Configure CORS for trusted frontend origins.
+
+## 🎯 Project Objective
+
+QuickDine aims to simplify restaurant discovery and table reservation management by bringing customers, restaurant owners, and administrators together in a unified web application.
+
+## 👩‍💻 Author
+
+**Srishty Agarwal**
+
+* GitHub: [srishtyagarwa164-prog](https://github.com/srishtyagarwa164-prog)
+
+---
+
+⭐ If you find QuickDine useful, consider starring the repository!
+
+
