@@ -171,7 +171,7 @@ QuickDine aims to simplify restaurant discovery and table reservation management
 
 **Srishty Agarwal**
 
-* GitHub: [srishtyagarwa164-prog](https://github.com/srishtyagarwa164-prog)
+* GitHub: [srishtyagarwa164-prog](https://github.com/srishtyagarwal64-prog)
 
 ---
 
