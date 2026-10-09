@@ -4,7 +4,7 @@ QuickDine is a full-stack, multi-restaurant management and table reservation pla
 
 ## 🚀 Live Demo
 
-**Live Website:** [QuickDine — Visit Website](YOUR_VERCEL_LIVE_URL)
+**Live Website:** [QuickDine — Visit Website](https://quickdine-phi.vercel.app/)
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge\&logo=vercel)](YOUR_VERCEL_LIVE_URL)
 
